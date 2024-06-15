@@ -1,6 +1,5 @@
 artifacts_root: artifacts
 
-
 data_ingestion:
   root_dir: artifacts/data_ingestion
   source_URL: https://github.com/rayaran1000/Datasets/raw/main/Exoplanet%20data%20-%20NASA.zip
@@ -14,11 +13,13 @@ data_transformation:
   data_path_transformed: artifacts/data_transformation/Exoplanet Chatbot Finetuned dataset.csv
 
 
-
 model_trainer:
   root_dir: artifacts/model_trainer
-  data_path: artifacts/data_transformation/samsum_dataset
-  model_ckpt: google/pegasus-cnn_dailymail
+  data_path: artifacts\data_transformation\Exoplanet Chatbot Finetuned dataset.csv
+  model_ckpt: google/gemma-2b-it
+  tokenizer_ckpt: google/gemma-2b-it
+  model_save_path: artifacts/model_trainer/ExoChatbot_200Steps
+  tokenizer_save_path: artifacts/model_trainer/ExoChatbot_200Steps_tokenizer
 
 
 
