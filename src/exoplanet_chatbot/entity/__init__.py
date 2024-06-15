@@ -11,3 +11,12 @@ class DataIngestionConfig: # defined for the config components present in artifa
     source_URL : str
     local_data_file : Path
     unzip_dir : Path
+
+from dataclasses import dataclass
+from pathlib import Path
+
+@dataclass(frozen=True)
+class DataTransformationConfig: # defined for the config components present in artifacts for data transformation
+    root_dir : Path 
+    data_path : Path
+    data_path_transformed : Path
