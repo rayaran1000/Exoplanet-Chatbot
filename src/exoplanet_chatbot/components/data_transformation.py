@@ -88,6 +88,38 @@ class DataTransformation:
                 })
         
         return pd.DataFrame(instruction_context_response_pairs)
+    
+    def generate_prompt(self,data_point):
+        """Generate input text based on a prompt, task instruction, context info, and answer.
+
+        :param data_point: dict: Data point
+        :return: str: tokenized prompt
+        """
+
+        prefix_text = 'Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n'
+        instruction = data_point['instruction']
+        input = data_point['input']
+        output = data_point['output']
+
+        # If context is provided
+        if input:
+            text = f"""<start_of_turn>user {prefix_text} {instruction} here is the input: {input} <end_of_turn>\n<start_of_turn>model {output} <end_of_turn>"""
+        # If context is not provided
+        else:
+            text = f"""<start_of_turn>user {prefix_text} {instruction} <end_of_turn>\n<start_of_turn>model {output} <end_of_turn>"""
+
+        return text
+
+    def finetuning_dataset_generator(self,data):
+
+        # Rename the dataset columns to align them with model requirements
+        data.rename(columns={'context' : 'input'},inplace=True)
+        data.rename(columns={'response' : 'output'},inplace=True)
+
+        # Adding the prompt column to the dataset
+        data['prompt'] = data.apply(self.generate_prompt, axis=1)
+
+        return data
 
     def transform(self):
 
@@ -107,7 +139,10 @@ class DataTransformation:
         feature_engineered_data['Context'] = feature_engineered_data.apply(self.context_generator, axis=1)
 
         # Instruction pair generation
-        instruction_context_response_pairs = self.instruction_pair_generator(feature_engineered_data)
+        instruction_context_response_pairs_data = self.instruction_pair_generator(feature_engineered_data)
+
+        # Finetuning dataset generation
+        finetuning_dataset = self.finetuning_dataset_generator(instruction_context_response_pairs_data)
 
         # Saving the data
-        instruction_context_response_pairs.to_csv(self.config.data_path_transformed, index=False)
+        finetuning_dataset.to_csv(self.config.data_path_transformed, index=False)

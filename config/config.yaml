@@ -11,7 +11,7 @@ data_ingestion:
 data_transformation:
   root_dir: artifacts/data_transformation
   data_path: artifacts/data_ingestion/Exoplanet data - NASA.csv
-  data_path_transformed: artifacts/data_transformation/Exoplanet data Q-A instruction pair.csv
+  data_path_transformed: artifacts/data_transformation/Exoplanet Chatbot Finetuned dataset.csv
 
 
 
