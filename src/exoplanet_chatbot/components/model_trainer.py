@@ -9,6 +9,16 @@ from peft import LoraConfig, PeftModel, prepare_model_for_kbit_training, get_pef
 
 from exoplanet_chatbot.entity import ModelTrainerConfig
 
+# Model Trainer
+import pandas as pd
+import torch
+from trl import SFTTrainer
+from datasets import Dataset
+import bitsandbytes as bnb
+from transformers import TrainingArguments, TrainerCallback, DataCollatorForLanguageModeling
+from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from peft import LoraConfig, PeftModel, prepare_model_for_kbit_training, get_peft_model
+
 class DebugCallback(TrainerCallback):
     def on_step_end(self, args, state, control, **kwargs):
         print(f"Step: {state.global_step}, Loss: {state.log_history[-1]['loss'] if state.log_history else 'N/A'}")
@@ -144,6 +154,7 @@ class ModelTrainer:
         trainer.train()
 
         #Saving the tokenizer and Model
-        new_model = "gemma-Exochat-Instruct-Finetune-Step20"
+        new_model = "gemma-Exochat-Instruct-Finetune-Step200"
         trainer.model.save_pretrained(new_model)
         self.tokenizer_and_model_save(new_model)
+

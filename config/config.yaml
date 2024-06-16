@@ -18,14 +18,14 @@ model_trainer:
   data_path: artifacts\data_transformation\Exoplanet Chatbot Finetuned dataset.csv
   model_ckpt: google/gemma-2b-it
   tokenizer_ckpt: google/gemma-2b-it
-  model_save_path: artifacts/model_trainer/ExoChatbot_20Steps
-  tokenizer_save_path: artifacts/model_trainer/ExoChatbot_20Steps_tokenizer
+  model_save_path: artifacts/model_trainer/ExoChatbot_10Steps
+  tokenizer_save_path: artifacts/model_trainer/ExoChatbot_10Steps_tokenizer
   evaluation_dataset_path: artifacts/data_transformation/evaluation_dataset
 
 
 model_evaluation:
   root_dir: artifacts/model_evaluation
   data_path: artifacts\data_transformation\Exoplanet Chatbot Finetuned dataset.csv
-  model_path: artifacts/model_trainer/ExoChatbot_20Steps
-  tokenizer_path: artifacts/model_trainer/ExoChatbot_20Steps_tokenizer
+  model_path: artifacts/model_trainer/ExoChatbot_200Steps
+  tokenizer_path: artifacts/model_trainer/ExoChatbot_200Steps_tokenizer
   metric_file_name: artifacts/model_evaluation/metrics.csv
