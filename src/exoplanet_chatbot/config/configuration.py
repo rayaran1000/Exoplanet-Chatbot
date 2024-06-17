@@ -3,6 +3,7 @@ from exoplanet_chatbot.utils.common import read_yaml,create_directories
 from exoplanet_chatbot.entity import DataIngestionConfig
 from exoplanet_chatbot.entity import DataTransformationConfig
 from exoplanet_chatbot.entity import ModelTrainerConfig
+from exoplanet_chatbot.entity import ModelEvaluatorConfig
 
 class ConfigurationManager:
     def __init__(
@@ -85,3 +86,20 @@ class ConfigurationManager:
         )
 
         return model_trainer_config
+
+    def get_model_evaluator_config(self) -> ModelEvaluatorConfig:
+
+        config= self.config.model_evaluation # Calling the model_trainer dictionary created in config.yaml file
+
+        create_directories([config.root_dir]) # Creating a directory using the root directory
+
+        model_evaluator_config = ModelEvaluatorConfig( # Extracting the values from the config.yaml to here inside data_ingestion_config
+
+        root_dir=config.root_dir,
+        data_path=config.data_path,
+        model_path=config.model_path,
+        tokenizer_path=config.tokenizer_path,
+        metric_file_name=config.metric_file_name,
+        evaluation_data_path=config.evaluation_data_path
+        )
+        return model_evaluator_config

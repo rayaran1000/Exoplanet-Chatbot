@@ -40,3 +40,12 @@ class ModelTrainerConfig: # defined for the config components present in artifac
     load_in_4bit: bool
     bnb_4bit_use_double_quant: bool
     bnb_4bit_quant_type: str
+
+@dataclass(frozen=True)
+class ModelEvaluatorConfig: # defined for the config components present in artifacts for model training
+   root_dir: Path
+   data_path: Path
+   model_path: Path
+   tokenizer_path: Path
+   metric_file_name: Path
+   evaluation_data_path: Path
