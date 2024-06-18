@@ -29,3 +29,8 @@ model_evaluation:
   tokenizer_path: artifacts/model_trainer/ExoChatbot_200Steps_tokenizer
   evaluation_data_path: artifacts/data_transformation/evaluation_dataset
   metric_file_name: artifacts/model_evaluation/metrics.csv
+
+
+prediction_pipeline:
+  finetuned_model_path: artifacts/model_trainer/ExoChatbot_200Steps
+  tokenizer_path: artifacts/model_trainer/ExoChatbot_200Steps_tokenizer

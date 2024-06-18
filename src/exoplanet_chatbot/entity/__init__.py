@@ -49,3 +49,8 @@ class ModelEvaluatorConfig: # defined for the config components present in artif
    tokenizer_path: Path
    metric_file_name: Path
    evaluation_data_path: Path
+
+@dataclass(frozen=True)
+class PredictionConfig: # defined for the config components present in artifacts for model training
+   finetuned_model_path: Path
+   tokenizer_path: Path

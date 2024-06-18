@@ -4,6 +4,7 @@ from exoplanet_chatbot.entity import DataIngestionConfig
 from exoplanet_chatbot.entity import DataTransformationConfig
 from exoplanet_chatbot.entity import ModelTrainerConfig
 from exoplanet_chatbot.entity import ModelEvaluatorConfig
+from exoplanet_chatbot.entity import PredictionConfig
 
 class ConfigurationManager:
     def __init__(
@@ -103,3 +104,14 @@ class ConfigurationManager:
         evaluation_data_path=config.evaluation_data_path
         )
         return model_evaluator_config
+    
+    def get_prediction_pipeline_config(self) -> PredictionConfig:
+
+        config= self.config.prediction_pipeline # Calling the predictionconfig dictionary created in config.yaml file
+
+        prediction_config = PredictionConfig( # Extracting the values from the config.yaml to here inside pipeline prediction config
+            finetuned_model_path=config.finetuned_model_path,
+            tokenizer_path=config.tokenizer_path
+        )
+
+        return prediction_config
