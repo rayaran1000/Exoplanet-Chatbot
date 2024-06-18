@@ -97,17 +97,16 @@ Data Scientist
 Email: aranya.ray1998@gmail.com
 
 ```
-
-
-
-
     
 # Deployment
 
 1. Created IAM user for deployment.
-2. Created ECR repo to store/save docker image.
-3. Created EC2 instance (Ubuntu) and installed docker in EC2 Machine.
-3. Setup Github secrets completed.
+2. Open the command prompt
+3. Ran the command "gcloud init" , to initialize the gcloud project
+4. Gave the server as "Asia - South1"
+5. Ran the command "gcloud app deploy app.yaml" to deploy the application on GCP
+
+![image](https://github.com/rayaran1000/Exoplanet-Chatbot/assets/122597408/4194c2bd-126e-443b-90eb-50af79c90fd9)
 
 ## Dataset and Model Specifications
 
